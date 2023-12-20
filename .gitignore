@@ -37,4 +37,4 @@ out/
 .vscode/
 
 # Rmsoft BookManage
-./secret/
+./secret/**
