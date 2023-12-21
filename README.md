@@ -19,7 +19,7 @@
 # API 서버 URL
 http://api.iksadnorth-library.kro.kr/
 
-[GET /api/books/1/histories](http://api.iksadnorth-library.kro.kr/api/books/1/histories)
+[작동 예시: GET /api/books/1/histories](http://api.iksadnorth-library.kro.kr/api/books/1/histories)
 
 ---
 
