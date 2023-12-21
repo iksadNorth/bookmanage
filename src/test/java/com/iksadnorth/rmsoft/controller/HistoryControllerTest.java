@@ -1,7 +1,7 @@
 package com.iksadnorth.rmsoft.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.iksadnorth.rmsoft.dto.request.BookCreateRequest;
+import com.iksadnorth.rmsoft.dto.request.HistoryCreateRequest;
 import com.iksadnorth.rmsoft.jwt.JwtUtil;
 import com.iksadnorth.rmsoft.type.HistoryChangeType;
 import com.iksadnorth.rmsoft.utils.LoadTestCase;
@@ -15,7 +15,6 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -51,12 +50,14 @@ class HistoryControllerTest {
     void runNormally_createHistories_loan() throws Exception {
         // given
         HistoryChangeType type = HistoryChangeType.LOAN;
+        HistoryCreateRequest request = new HistoryCreateRequest();
+        request.setType(type);
         String jwt = jwtUtil.createToken("username 3");
 
         MockHttpServletRequestBuilder builder = post("/api/books/3/histories")
                 .header("Authorization", jwt)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(mapper.writeValueAsString(type));
+                .content(mapper.writeValueAsString(request));
 
         // when & then
         mvc.perform(builder)
@@ -70,12 +71,14 @@ class HistoryControllerTest {
     void runNormally_createHistories_return() throws Exception {
         // given
         HistoryChangeType type = HistoryChangeType.RETURN;
+        HistoryCreateRequest request = new HistoryCreateRequest();
+        request.setType(type);
         String jwt = jwtUtil.createToken("username 2");
 
         MockHttpServletRequestBuilder builder = post("/api/books/1/histories")
                 .header("Authorization", jwt)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(mapper.writeValueAsString(type));
+                .content(mapper.writeValueAsString(request));
 
         // when & then
         mvc.perform(builder)
@@ -108,12 +111,14 @@ class HistoryControllerTest {
     void runAbnormally_createHistories_requestEmptyBook() throws Exception {
         // given
         HistoryChangeType type = HistoryChangeType.LOAN;
+        HistoryCreateRequest request = new HistoryCreateRequest();
+        request.setType(type);
         String jwt = jwtUtil.createToken("username 1");
 
         MockHttpServletRequestBuilder builder = post("/api/books/1/histories")
                 .header("Authorization", jwt)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(mapper.writeValueAsString(type));
+                .content(mapper.writeValueAsString(request));
 
         // when & then
         mvc.perform(builder)
@@ -127,12 +132,14 @@ class HistoryControllerTest {
     void runAbnormally_createHistories_returnByOther() throws Exception {
         // given
         HistoryChangeType type = HistoryChangeType.RETURN;
+        HistoryCreateRequest request = new HistoryCreateRequest();
+        request.setType(type);
         String jwt = jwtUtil.createToken("username 1");
 
         MockHttpServletRequestBuilder builder = post("/api/books/1/histories")
                 .header("Authorization", jwt)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(mapper.writeValueAsString(type));
+                .content(mapper.writeValueAsString(request));
 
         // when & then
         mvc.perform(builder)

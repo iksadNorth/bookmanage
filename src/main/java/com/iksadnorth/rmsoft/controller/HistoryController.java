@@ -1,11 +1,11 @@
 package com.iksadnorth.rmsoft.controller;
 
+import com.iksadnorth.rmsoft.dto.request.HistoryCreateRequest;
 import com.iksadnorth.rmsoft.dto.response.HistoryResponse;
 import com.iksadnorth.rmsoft.dto.response.MessageResponse;
 import com.iksadnorth.rmsoft.exception.BookException;
 import com.iksadnorth.rmsoft.security.UserDetailsImpl;
 import com.iksadnorth.rmsoft.service.HistoryService;
-import com.iksadnorth.rmsoft.type.HistoryChangeType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -28,8 +28,8 @@ public class HistoryController {
     public MessageResponse createHistories(
             @PathVariable Long bookId,
             @AuthenticationPrincipal UserDetailsImpl principal,
-            @RequestBody HistoryChangeType type
+            @RequestBody HistoryCreateRequest request
             ) throws BookException {
-        return historyService.createHistories(bookId, principal.getMember(), type);
+        return historyService.createHistories(bookId, principal.getMember(), request.getType());
     }
 }

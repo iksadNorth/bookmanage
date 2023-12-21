@@ -47,7 +47,7 @@ public class BookServiceImpl implements BookService {
 
         // isbn이 중복되면 오류.
         Optional<Book> bookOptional = bookRepository.findByIsbn(request.getIsbn());
-        if (bookOptional.isPresent()) {
+        if (!book.getIsbn().equals(request.getIsbn()) && bookOptional.isPresent()) {
             throw new BookException(
                     "해당 ISBN의 서적은 이미 존재합니다.",
                     HttpStatus.CONFLICT

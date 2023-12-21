@@ -6,9 +6,9 @@
 
     <insert id="save" parameterType="com.iksadnorth.rmsoft.domain.Member">
         INSERT INTO member
-            (username, password)
+            (username, password, role_type)
         VALUES
-            (#{username}, #{password})
+            (#{username}, #{password}, #{roleType})
     </insert>
 
     <select id="findByUsername" parameterType="String" resultType="com.iksadnorth.rmsoft.domain.Member">
