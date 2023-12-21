@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto17
+  build:
+    commands:
+      - echo "Building Spring Boot Application with Gradle"
+      - chmod +x ./gradlew
+      - ./gradlew build
+  post_build:
+    commands:
+      - echo "Build completed"
+artifacts:
+  files:
+    - build/libs/*.jar
+    - appspec.yml
+    - scripts/*.sh
