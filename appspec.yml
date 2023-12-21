@@ -12,6 +12,8 @@ hooks:
       runas: root
   ApplicationStart:
     - location: scripts/deploy.sh
+      timeout: 120
       runas: root
     - location: scripts/set_port_forwarding.sh
+      timeout: 60
       runas: root
