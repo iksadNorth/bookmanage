@@ -6,10 +6,10 @@ files:
     overwrite: yes
 
 hooks:
-  ApplicationStop:
-    - location: scripts/kill_old_process.sh
-      timeout: 60
-      runas: root
+#  ApplicationStop:
+#    - location: scripts/kill_old_process.sh
+#      timeout: 60
+#      runas: root
   ApplicationStart:
     - location: scripts/deploy.sh
       timeout: 120
