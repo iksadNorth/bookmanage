@@ -2,16 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.iksadnorth.rmsoft.repository.MemberRepository">
+<mapper namespace="com.iksadnorth.bookmanage.repository.MemberRepository">
 
-    <insert id="save" parameterType="com.iksadnorth.rmsoft.domain.Member">
+    <insert id="save" parameterType="com.iksadnorth.bookmanage.domain.Member">
         INSERT INTO member
             (username, password, role_type)
         VALUES
             (#{username}, #{password}, #{roleType})
     </insert>
 
-    <select id="findByUsername" parameterType="String" resultType="com.iksadnorth.rmsoft.domain.Member">
+    <select id="findByUsername" parameterType="String" resultType="com.iksadnorth.bookmanage.domain.Member">
         SELECT * FROM member WHERE username = #{username}
     </select>
 

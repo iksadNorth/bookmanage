@@ -2,20 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.iksadnorth.rmsoft.repository.HistoryRepository">
+<mapper namespace="com.iksadnorth.bookmanage.repository.HistoryRepository">
 
-    <insert id="save" parameterType="com.iksadnorth.rmsoft.domain.History">
+    <insert id="save" parameterType="com.iksadnorth.bookmanage.domain.History">
         INSERT INTO history
             (created_at, type, book_id, member_id)
         VALUES
             (#{createdAt}, #{type}, #{bookId}, #{memberId})
     </insert>
 
-    <select id="findAllOrderedByCreatedAtDesc" resultType="com.iksadnorth.rmsoft.domain.History">
+    <select id="findAllOrderedByCreatedAtDesc" resultType="com.iksadnorth.bookmanage.domain.History">
         SELECT * FROM history ORDER BY created_at DESC
     </select>
 
-    <select id="findLatestHistoryByBookId" parameterType="Long" resultType="com.iksadnorth.rmsoft.domain.History">
+    <select id="findLatestHistoryByBookId" parameterType="Long" resultType="com.iksadnorth.bookmanage.domain.History">
         SELECT * FROM history WHERE book_id = #{bookId} ORDER BY created_at DESC LIMIT 1
     </select>
 
