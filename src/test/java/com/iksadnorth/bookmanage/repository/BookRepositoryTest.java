@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 
+import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
 @SpringBootTest
@@ -83,6 +83,21 @@ class BookRepositoryTest {
         // then
         assertTrue(memberOptional.isPresent());
         log.info(memberOptional.get().toString());
+    }
+
+    @LoadTestCase
+    @Test
+    void runNormally_findAll() {
+        // given
+
+        // when
+        List<Book> memberList = bookRepository.findAll();
+
+        // then
+        for (Book book : memberList) {
+            log.info(book.toString());
+        }
+        assertTrue(memberList.size() == 3);
     }
 
 }

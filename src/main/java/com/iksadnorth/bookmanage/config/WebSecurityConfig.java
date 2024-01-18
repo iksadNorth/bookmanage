@@ -48,7 +48,7 @@ public class WebSecurityConfig {
                         .requestMatchers(antMatcher(HttpMethod.GET, "/api/books/*/histories")).permitAll()
                         .requestMatchers(antMatcher(HttpMethod.POST, "/api/books/*/histories")).authenticated()
 
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
         );
 
         return http.build();

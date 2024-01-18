@@ -3,6 +3,7 @@ package com.iksadnorth.bookmanage.service;
 import com.iksadnorth.bookmanage.domain.Book;
 import com.iksadnorth.bookmanage.dto.request.BookCreateRequest;
 import com.iksadnorth.bookmanage.dto.request.BookUpdateRequest;
+import com.iksadnorth.bookmanage.dto.response.BookResponse;
 import com.iksadnorth.bookmanage.dto.response.MessageResponse;
 import com.iksadnorth.bookmanage.exception.BookException;
 import com.iksadnorth.bookmanage.repository.BookRepository;
@@ -11,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -61,5 +63,12 @@ public class BookServiceImpl implements BookService {
         return new MessageResponse(
                 "성공적으로 도서 수정이 이뤄졌습니다."
         );
+    }
+
+    @Override
+    public List<BookResponse> read() {
+        return bookRepository.findAll().stream()
+                .map(BookResponse::new)
+                .toList();
     }
 }

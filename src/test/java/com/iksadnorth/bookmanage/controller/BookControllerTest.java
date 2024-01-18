@@ -15,8 +15,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -48,6 +47,20 @@ class BookControllerTest {
                 .header("Authorization", jwt)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(mapper.writeValueAsString(request));
+
+        // when & then
+        mvc.perform(builder)
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
+
+    @LoadTestCase
+    @DisplayName("[정상 작동] Get /api/books")
+    @Test
+    void runNormally_read() throws Exception {
+        // given
+
+        MockHttpServletRequestBuilder builder = get("/api/books");
 
         // when & then
         mvc.perform(builder)

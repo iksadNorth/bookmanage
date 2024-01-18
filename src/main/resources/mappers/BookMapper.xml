@@ -30,4 +30,8 @@
         SELECT * FROM book WHERE id = #{bookId}
     </select>
 
+    <select id="findAll" parameterType="List" resultType="com.iksadnorth.bookmanage.domain.Book">
+        SELECT * FROM book;
+    </select>
+
 </mapper>

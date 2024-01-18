@@ -4,6 +4,7 @@ import com.iksadnorth.bookmanage.domain.Book;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Mapper
@@ -16,4 +17,6 @@ public interface BookRepository {
     Optional<Book> findByIsbn(String isbn);
 
     Optional<Book> findById(Long bookId);
+
+    List<Book> findAll();
 }
